@@ -1,0 +1,18 @@
+{
+  "meditate": {
+    "isCompleted": false,
+    "id": 0
+  },
+  "stretch": {
+    "isCompleted": false,
+    "id": 1
+  },
+  "workout": {
+    "isCompleted": false,
+    "id": 2
+  },
+  "journal": {
+    "isCompleted": false,
+    "id": 3
+  }
+}
