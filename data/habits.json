@@ -1,0 +1,30 @@
+[
+  {
+    "title": "meditate",
+    "data": {
+      "isCompleted": false,
+      "date": "1"
+    }
+  },
+  {
+    "title": "stretch",
+    "data": {
+      "isCompleted": false,
+      "date": "1"
+    }
+  },
+  {
+    "title": "workout",
+    "data": {
+      "isCompleted": false,
+      "date": "1"
+    }
+  },
+  {
+    "title": "journal",
+    "data": {
+      "isCompleted": false,
+      "date": "1"
+    }
+  }
+]
