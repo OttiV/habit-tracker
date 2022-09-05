@@ -1,3 +1,4 @@
+import { habits } from '@/data';
 import { FC } from 'react';
 import { Table } from 'semantic-ui-react';
 import { HabitRow } from './components';
@@ -8,6 +9,7 @@ const HabistContainer: FC = () => {
     <Table>
       <Header>
         <Row>
+          <HeaderCell textAlign="center">#</HeaderCell>
           <HeaderCell textAlign="center">Meditation</HeaderCell>
           <HeaderCell textAlign="center">Stretch</HeaderCell>
           <HeaderCell textAlign="center">Workout</HeaderCell>
@@ -15,8 +17,9 @@ const HabistContainer: FC = () => {
         </Row>
       </Header>
       <Body>
-        <Row></Row>
-        <HabitRow />
+        {habits.map((habit, i) => (
+          <HabitRow key={i} habit={habit} id={i} />
+        ))}
       </Body>
     </Table>
   );
