@@ -1,1 +1,2 @@
-export {default as HabitsContainer} from './HabitsContainer'
+export { HabitsContainer } from './HabitsContainer';
+export { Layout } from './Layout';

@@ -1,15 +1,14 @@
-import { HabitsContainer } from '@/components';
+import { HabitsContainer, Layout } from '@/components';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>Habit tracker</Head>
-
+      <h3>Habit tracker</h3>
       <HabitsContainer />
-    </div>
+    </Layout>
   );
 };
 
