@@ -1,33 +1,20 @@
+import { Habit } from '@/types/Habit';
 import { FC } from 'react';
 import { Table } from 'semantic-ui-react';
 import HabitCell from './HabitCell';
 
-interface HabitProps {
-  isCompleted: boolean;
-  id: number;
-}
-
 interface HabitRowProps {
-  habit: {
-    meditate: HabitProps;
-    stretch: HabitProps;
-    workout: HabitProps;
-    journal: HabitProps;
-  };
-  id: number;
+  habits: Habit[];
 }
 
-const HabitRow: FC<HabitRowProps> = ({ habit, id }) => {
-  const { meditate, stretch, workout, journal } = habit;
-  const { Row, Cell } = Table;
+const HabitRow: FC<HabitRowProps> = ({ habits }) => {
+  const { Row } = Table;
 
   return (
     <Row>
-      <Cell textAlign="center">{id + 1}</Cell>
-      <HabitCell isCompleted={meditate.isCompleted} />
-      <HabitCell isCompleted={stretch.isCompleted} />
-      <HabitCell isCompleted={workout.isCompleted} />
-      <HabitCell isCompleted={journal.isCompleted} />
+      {habits.map(({ data, title }) => (
+        <HabitCell key={title} isCompleted={data.isCompleted} />
+      ))}
     </Row>
   );
 };

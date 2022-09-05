@@ -1,56 +1,30 @@
 [
   {
-    "meditate": {
+    "title": "meditate",
+    "data": {
       "isCompleted": false,
-      "id": 0
-    },
-    "stretch": {
-      "isCompleted": false,
-      "id": 1
-    },
-    "workout": {
-      "isCompleted": false,
-      "id": 2
-    },
-    "journal": {
-      "isCompleted": false,
-      "id": 3
+      "date": "1"
     }
   },
   {
-    "meditate": {
+    "title": "stretch",
+    "data": {
       "isCompleted": false,
-      "id": 0
-    },
-    "stretch": {
-      "isCompleted": false,
-      "id": 1
-    },
-    "workout": {
-      "isCompleted": false,
-      "id": 2
-    },
-    "journal": {
-      "isCompleted": false,
-      "id": 3
+      "date": "1"
     }
   },
   {
-    "meditate": {
+    "title": "workout",
+    "data": {
       "isCompleted": false,
-      "id": 0
-    },
-    "stretch": {
+      "date": "1"
+    }
+  },
+  {
+    "title": "journal",
+    "data": {
       "isCompleted": false,
-      "id": 1
-    },
-    "workout": {
-      "isCompleted": false,
-      "id": 2
-    },
-    "journal": {
-      "isCompleted": false,
-      "id": 3
+      "date": "1"
     }
   }
 ]

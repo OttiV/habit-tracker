@@ -1,25 +1,33 @@
-import { habits } from '@/data';
+import { Habit } from '@/types/Habit';
 import { FC } from 'react';
 import { Table } from 'semantic-ui-react';
 import { HabitRow } from './components';
 
-const HabistContainer: FC = () => {
+interface HabistContainerProps {
+  habits: Habit[];
+}
+
+const HabistContainer: FC<HabistContainerProps> = ({ habits }) => {
   const { Header, Row, HeaderCell, Body } = Table;
+
   return (
     <Table>
       <Header>
         <Row>
-          <HeaderCell textAlign="center">#</HeaderCell>
-          <HeaderCell textAlign="center">Meditation</HeaderCell>
-          <HeaderCell textAlign="center">Stretch</HeaderCell>
-          <HeaderCell textAlign="center">Workout</HeaderCell>
-          <HeaderCell textAlign="center">Journal</HeaderCell>
+          {habits.map(({ title }) => {
+            const formattedTitle = `${title[0].toUpperCase()}${title
+              .slice(1)
+              .toLowerCase()}`;
+            return (
+              <HeaderCell textAlign="center" key={title}>
+                {formattedTitle}
+              </HeaderCell>
+            );
+          })}
         </Row>
       </Header>
       <Body>
-        {habits.map((habit, i) => (
-          <HabitRow key={i} habit={habit} id={i} />
-        ))}
+        <HabitRow habits={habits} />
       </Body>
     </Table>
   );
