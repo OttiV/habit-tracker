@@ -1,1 +1,1 @@
-export {default as habits} from './habits.json'
+export { default as habits } from './habits.json';
