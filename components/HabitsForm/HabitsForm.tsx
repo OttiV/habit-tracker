@@ -1,104 +1,157 @@
 import { Habit } from '@/types/Habit';
-import { FC, useState } from 'react';
+import { Formik } from 'formik';
+import { FC } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
+import * as Yup from 'yup';
+import { ErrorMessage } from '../Message';
+
+const validation = Yup.string()
+  .min(3, 'Too Short!')
+  .max(15, 'Too Long!')
+  .required('Required');
+
+const validationSchema = Yup.object().shape({
+  value1: validation,
+  value2: validation,
+  value3: validation,
+  value4: validation,
+  value5: validation,
+});
 
 interface HabitsFormProps {
   setHabits: (value: Habit[]) => void;
 }
 
 const HabitsForm: FC<HabitsFormProps> = ({ setHabits }) => {
-  const [value1, setValue1] = useState('');
-  const [value2, setValue2] = useState('');
-  const [value3, setValue3] = useState('');
-  const [value4, setValue4] = useState('');
-  const [value5, setValue5] = useState('');
-
-  const onSubmit = () => {
-    const habits = [
-      {
-        title: value1,
-        data: {
-          isCompleted: false,
-          date: new Date(),
-        },
-      },
-      {
-        title: value2,
-        data: {
-          isCompleted: false,
-          date: new Date(),
-        },
-      },
-      {
-        title: value3,
-        data: {
-          isCompleted: false,
-          date: new Date(),
-        },
-      },
-      {
-        title: value4,
-        data: {
-          isCompleted: false,
-          date: new Date(),
-        },
-      },
-      {
-        title: value5,
-        data: {
-          isCompleted: false,
-          date: new Date(),
-        },
-      },
-    ];
-
-    setHabits(habits);
-  };
   const { Field } = Form;
+
+  const initialValues = {
+    value1: '',
+    value2: '',
+    value3: '',
+    value4: '',
+    value5: '',
+  };
+
   return (
-    <Form onSubmit={onSubmit}>
-      <Field>
-        <Input
-          value={value1}
-          onChange={(e) => setValue1(e.target.value)}
-          label="Habit 1"
-          labelPosition="left"
-        />
-      </Field>
-      <Field>
-        <Input
-          value={value2}
-          onChange={(e) => setValue2(e.target.value)}
-          label="Habit 2"
-          labelPosition="left"
-        />
-      </Field>
-      <Field>
-        <Input
-          value={value3}
-          onChange={(e) => setValue3(e.target.value)}
-          label="Habit 3"
-          labelPosition="left"
-        />
-      </Field>
-      <Field>
-        <Input
-          value={value4}
-          onChange={(e) => setValue4(e.target.value)}
-          label="Habit 4"
-          labelPosition="left"
-        />
-      </Field>
-      <Field>
-        <Input
-          value={value5}
-          onChange={(e) => setValue5(e.target.value)}
-          label="Habit 5"
-          labelPosition="left"
-        />
-      </Field>
-      <Button primary>Submit</Button>
-    </Form>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          const data = {
+            isCompleted: false,
+            date: new Date(),
+          };
+
+          const habits = [
+            {
+              title: values.value1,
+              data,
+            },
+            {
+              title: values.value2,
+              data,
+            },
+            {
+              title: values.value3,
+              data,
+            },
+            {
+              title: values.value4,
+              data,
+            },
+            {
+              title: values.value5,
+              data,
+            },
+          ];
+          setHabits(habits);
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
+        <Form onSubmit={handleSubmit}>
+          <Field>
+            <Input
+              name="value1"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.value1}
+              label="Habit 1"
+              labelPosition="left"
+            />
+          </Field>
+          {errors.value1 && touched.value1 && (
+            <ErrorMessage message={errors.value1} />
+          )}
+          <Field>
+            <Input
+              name="value2"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.value2}
+              label="Habit 2"
+              labelPosition="left"
+            />
+          </Field>
+          {errors.value2 && touched.value2 && (
+            <ErrorMessage message={errors.value2} />
+          )}
+          <Field>
+            <Input
+              name="value3"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.value3}
+              label="Habit 3"
+              labelPosition="left"
+            />
+          </Field>
+          {errors.value3 && touched.value3 && (
+            <ErrorMessage message={errors.value3} />
+          )}
+          <Field>
+            <Input
+              name="value4"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.value4}
+              label="Habit 4"
+              labelPosition="left"
+            />
+          </Field>
+          {errors.value4 && touched.value4 && (
+            <ErrorMessage message={errors.value4} />
+          )}
+          <Field>
+            <Input
+              name="value5"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.value5}
+              label="Habit 5"
+              labelPosition="left"
+            />
+          </Field>
+          {errors.value5 && touched.value5 && (
+            <ErrorMessage message={errors.value5} />
+          )}
+          <Button primary disabled={isSubmitting}>
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
