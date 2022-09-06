@@ -17,7 +17,9 @@ const Home: NextPage = () => {
         <HabitsContainer habits={habits} />
       ) : (
         <>
-          <div>Insert 5 habits you want to implement in your daily routine</div>
+          <div style={{ marginBottom: 20 }}>
+            Insert 5 habits you want to implement in your daily routine
+          </div>
           <HabitsForm setHabits={setHabits} />{' '}
         </>
       )}
